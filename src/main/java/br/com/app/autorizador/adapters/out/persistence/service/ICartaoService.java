@@ -7,7 +7,6 @@ import br.com.app.autorizador.adapters.out.persistence.entity.CartaoEntity;
 public interface ICartaoService {
 	
 	CartaoEntity salvar(CartaoEntity cartaoEntity);
-	Optional<CartaoEntity> buscarPorNumero(Long numero);  
-	boolean existePorNumero(Long numero);
+	Optional<CartaoEntity> buscarPorNumero(Long numero);
 
 }

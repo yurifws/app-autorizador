@@ -29,6 +29,7 @@ public class CartaoEntity {
 	@Column(nullable = false)
 	private String senha;
 	
-	private BigDecimal saldo;
+	@Column(nullable = false)
+	private final BigDecimal saldo = BigDecimal.valueOf(500);
 
 }

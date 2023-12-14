@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.app.autorizador.common.exception.CartaoJaExisteException;
 import br.com.app.autorizador.common.exception.NumeroCartaoNaoEncontradoException;
 
 @ControllerAdvice
@@ -16,7 +17,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(NumeroCartaoNaoEncontradoException.class)
 	public ResponseEntity<Object> numeroCartaoNaoEncontradoException(NumeroCartaoNaoEncontradoException ex, WebRequest request) {
 		return super.handleExceptionInternal(ex, null, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
-
+	}
+	
+	@ExceptionHandler(CartaoJaExisteException.class)
+	public ResponseEntity<Object> cartaoJaExisteException(CartaoJaExisteException ex, WebRequest request) {
+		return super.handleExceptionInternal(ex, ex.getCartaoDto(), new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
 	}
 	
 

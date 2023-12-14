@@ -24,9 +24,4 @@ public class CartaoService implements ICartaoService {
 		return repository.findByNumero(numero);
 	}
 
-	@Override
-	public boolean existePorNumero(Long numero) {
-		return repository.existsByNumero(numero);
-	}
-
 }
