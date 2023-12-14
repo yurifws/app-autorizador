@@ -1,6 +1,7 @@
 package br.com.app.autorizador.application.core.cartoes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -14,8 +15,8 @@ import lombok.RequiredArgsConstructor;
 public class ValidaCartaoService implements ValidaCartaoUseCase {
 	
 	@Override
-	public void processarValidacao(Cartao cartao, List<ICartaoValidator> validacoesCartao) {
-		validacoesCartao.forEach(validacaoCartao -> validacaoCartao.validar(cartao));
+	public void processarValidacao(Optional<Cartao> cartaoBuscado, Cartao cartao, List<ICartaoValidator> validacoesCartao) {
+		validacoesCartao.forEach(validacaoCartao -> validacaoCartao.validar(cartaoBuscado, cartao));
 	}
 	
 }

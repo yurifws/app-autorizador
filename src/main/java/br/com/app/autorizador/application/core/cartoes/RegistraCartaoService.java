@@ -1,6 +1,7 @@
 package br.com.app.autorizador.application.core.cartoes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -15,13 +16,17 @@ import lombok.RequiredArgsConstructor;
 public class RegistraCartaoService implements RegistraCartaoUseCase {
 	
 	private final RegistraCartaoPort registraCartaoPort;
+	private final BuscaCartaoService buscaCartaoService;
 	private final ValidaCartaoService validaCartaoService;
 	private final CartaoJaExisteValidator cartaoJaExisteValidator;
 
 	@Override
 	public Cartao registrar(Cartao cartao) {
 	
-		validaCartaoService.processarValidacao(cartao, List.of(cartaoJaExisteValidator));
+		Optional<Cartao> cartaoBuscado = buscaCartaoService.buscarPorNumero(cartao.getNumero());
+		
+		validaCartaoService.processarValidacao(cartaoBuscado, cartao, List.of(cartaoJaExisteValidator));
+		
 		return registraCartaoPort.registrar(cartao);
 	}
 
