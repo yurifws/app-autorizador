@@ -2,11 +2,10 @@ drop table if exists miniautorizador.tb_cartao;
 
 create table miniautorizador.tb_cartao 
 (
-	id 		bigint  		not null auto_increment, 
 	numero 	bigint 			not null,
 	senha 	varchar(255)	not null,
 	saldo 	decimal(10, 2) 	default 500.00,
-	primary key (id)
+	primary key (numero)
 );
 
 insert into miniautorizador.tb_cartao (numero, senha, saldo) values (1111222233334444, "1234", 1000);
