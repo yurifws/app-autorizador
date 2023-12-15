@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,6 +31,11 @@ public class CartaoEntity {
 	private String senha;
 	
 	@Column(nullable = false)
-	private final BigDecimal saldo = BigDecimal.valueOf(500);
+	private BigDecimal saldo;
+	
+	@PrePersist
+	public void onPrePersist() {
+		this.saldo = BigDecimal.valueOf(500);
+	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.app.autorizador.application.core.cartoes.validators.CartaoJaExisteValidator;
 import br.com.app.autorizador.application.domain.Cartao;
+import br.com.app.autorizador.application.domain.Transacao;
 import br.com.app.autorizador.application.port.in.RegistraCartaoUseCase;
 import br.com.app.autorizador.application.port.out.RegistraCartaoPort;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,9 @@ public class RegistraCartaoService implements RegistraCartaoUseCase {
 	
 		Optional<Cartao> cartaoBuscado = buscaCartaoService.buscarPorNumero(cartao.getNumero());
 		
-		validaCartaoService.processarValidacao(cartaoBuscado, cartao, List.of(cartaoJaExisteValidator));
+		validaCartaoService.processarValidacao(cartaoBuscado, 
+				Transacao.builder().cartao(cartao).build(), 
+				List.of(cartaoJaExisteValidator));
 		
 		return registraCartaoPort.registrar(cartao);
 	}
