@@ -25,10 +25,10 @@ public class RegistraCartaoController {
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<CartaoDto> registrar(@RequestBody CartaoDto carDto) {
+	public ResponseEntity<CartaoDto> registrar(@RequestBody CartaoDto cartaoDto) {
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
-				.body(INSTANCE.toCartaoDto(registraCartaoUseCase.registrar(INSTANCE.toCartao(carDto))));
+				.body(INSTANCE.toCartaoDto(registraCartaoUseCase.registrar(INSTANCE.toCartao(cartaoDto))));
 		
 	}
 
