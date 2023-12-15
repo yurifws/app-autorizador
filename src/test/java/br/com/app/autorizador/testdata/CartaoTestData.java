@@ -1,6 +1,7 @@
 package br.com.app.autorizador.testdata;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import br.com.app.autorizador.application.domain.Cartao;
 
@@ -12,6 +13,10 @@ public class CartaoTestData {
 				.senha("1234")
 				.saldo(BigDecimal.valueOf(500))
 				.build();
+	}
+	
+	public static Optional<Cartao> getOptionalCartao() {
+		return Optional.of(getCartao());
 	}
 	
 	

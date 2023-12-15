@@ -23,7 +23,7 @@ class RegistraCartaoPersistenceAdapterTest {
 	
 
 	@InjectMocks
-	private RegistraCartaoPersistenceAdapter adapter;
+	private RegistraCartaoPersistenceAdapter registraCartaoPersistenceAdapter;
 
 	@Mock
 	private ICartaoService service;
@@ -38,7 +38,7 @@ class RegistraCartaoPersistenceAdapterTest {
 
 		Cartao cartao = CartaoTestData.getCartao();
 		
-		Cartao response = adapter.registrar(cartao);
+		Cartao response = registraCartaoPersistenceAdapter.registrar(cartao);
 		
 		verify(service).salvar(argumentCaptorCartaoEntity.getValue());
 		
