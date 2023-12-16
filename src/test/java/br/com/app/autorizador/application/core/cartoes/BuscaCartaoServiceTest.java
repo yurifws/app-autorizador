@@ -16,7 +16,6 @@ import br.com.app.autorizador.application.domain.Cartao;
 import br.com.app.autorizador.application.port.out.BuscaCartaoPort;
 import br.com.app.autorizador.testdata.CartaoTestData;
 
-
 @ExtendWith(SpringExtension.class)
 class BuscaCartaoServiceTest {
 	

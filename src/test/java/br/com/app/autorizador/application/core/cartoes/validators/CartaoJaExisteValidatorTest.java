@@ -20,7 +20,6 @@ class CartaoJaExisteValidatorTest {
 	@InjectMocks
 	private CartaoJaExisteValidator cartaoJaExisteValidator;
 	
-	
 	@Test
 	void testValidar() { 
 		cartaoJaExisteValidator.validar(Optional.empty(), TransacaoTestData.getTransacao());

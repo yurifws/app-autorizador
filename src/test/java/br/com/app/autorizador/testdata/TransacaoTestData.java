@@ -18,6 +18,17 @@ public class TransacaoTestData {
 		return Optional.of(getTransacao());
 	}
 	
+	public static Transacao getTransacaoMaiorQueSaldo() {
+		return Transacao.builder()
+				.cartao(CartaoTestData.getCartao())
+				.valor(BigDecimal.valueOf(1000))
+				.build();
+	}
+	
+	public static Optional<Transacao> getOptionalgetTransacaoMaiorQueSaldo() {
+		return Optional.of(getTransacaoMaiorQueSaldo());
+	}
+	
 	
 
 }
