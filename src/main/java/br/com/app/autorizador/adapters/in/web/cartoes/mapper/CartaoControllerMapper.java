@@ -12,6 +12,8 @@ public interface CartaoControllerMapper {
 
 	CartaoControllerMapper INSTANCE = Mappers.getMapper(CartaoControllerMapper.class);
 	
+
+    @Mapping(target = "saldo", ignore = true)
 	@Mapping(target = "numero", source = "numeroCartao")
 	public Cartao toCartao(CartaoDto cartaoDto);
 	
