@@ -1,5 +1,20 @@
 package br.com.app.autorizador.application.domain;
 
-public class Cartao {
+import java.math.BigDecimal;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Builder
+public class Cartao {
+	
+	private Long numero;
+	private String senha;
+	private BigDecimal saldo;
+	
 }
