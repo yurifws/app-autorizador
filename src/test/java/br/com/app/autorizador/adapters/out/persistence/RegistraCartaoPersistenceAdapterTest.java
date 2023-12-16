@@ -36,7 +36,7 @@ class RegistraCartaoPersistenceAdapterTest {
 
 		when(service.salvar(argumentCaptorCartaoEntity.capture())).thenReturn(CartaoEntityTestData.getCartaoEntity());
 
-		Cartao cartao = CartaoTestData.getCartao();
+		Cartao cartao = CartaoTestData.getCartaoNovoRegistrar();
 		
 		Cartao response = registraCartaoPersistenceAdapter.registrar(cartao);
 		

@@ -19,6 +19,13 @@ public class CartaoTestData {
 		return Optional.of(getCartao());
 	}
 	
+	public static Cartao getCartaoNovoRegistrar() {
+		return Cartao.builder()
+				.numero(1111222233334444l)
+				.senha("1234")
+				.build();
+	}
+	
 	
 
 }

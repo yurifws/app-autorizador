@@ -28,9 +28,9 @@ class RegistraCartaoControllerTest {
 	@Test
 	void testRegistrar() throws Exception {
 
-		Cartao cartao = CartaoTestData.getCartao();
+		Cartao cartao = CartaoTestData.getCartaoNovoRegistrar();
 		
-		when(registraCartaoUseCase.registrar(cartao)).thenReturn(CartaoTestData.getCartao());
+		when(registraCartaoUseCase.registrar(cartao)).thenReturn(cartao);
 		
 		mockMvc.perform(MockMvcRequestBuilders.post(ROTA_CARTOES)
 				.contentType(MediaType.APPLICATION_JSON_VALUE)

@@ -1,6 +1,7 @@
 package br.com.app.autorizador.application.core.cartoes;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -50,11 +51,10 @@ class RegistraCartaoServiceTest {
 	@Test
 	void testRegistrar() {
 		
-
-		Cartao cartao = CartaoTestData.getCartao();
+		Cartao cartao = CartaoTestData.getCartaoNovoRegistrar();
 		Optional<Cartao> cartaoBuscado = CartaoTestData.getOptionalCartao();
 		when(buscaCartaoUseCase.buscarPorNumero(cartao.getNumero())).thenReturn(cartaoBuscado);
-		doNothing().when(validaCartaoUseCase).processarValidacao(cartaoBuscado, argumentCaptorTransacaoEntity.capture(), List.of(cartaoJaExisteValidator));
+		doNothing().when(validaCartaoUseCase).processarValidacao(eq(cartaoBuscado), argumentCaptorTransacaoEntity.capture(), eq(List.of(cartaoJaExisteValidator)));
 		when(registraCartaoPort.registrar(cartao)).thenReturn(cartao);
 		
 		Cartao response = service.registrar(cartao);
