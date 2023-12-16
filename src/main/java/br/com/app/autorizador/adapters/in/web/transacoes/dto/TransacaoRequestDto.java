@@ -1,5 +1,7 @@
 package br.com.app.autorizador.adapters.in.web.transacoes.dto;
 
-public record TransacaoRequestDto() {
+import java.math.BigDecimal;
+
+public record TransacaoRequestDto(Long numeroCartao, String senhaCartao, BigDecimal valor) {
 
 }

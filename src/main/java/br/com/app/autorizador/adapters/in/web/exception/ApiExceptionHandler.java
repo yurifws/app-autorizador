@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.app.autorizador.common.exception.CartaoInexistenteException;
 import br.com.app.autorizador.common.exception.CartaoJaExisteException;
 import br.com.app.autorizador.common.exception.NumeroCartaoNaoEncontradoException;
+import br.com.app.autorizador.common.exception.SaldoCartaoInsuficienteException;
+import br.com.app.autorizador.common.exception.SenhaCartaoInvalidaException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -22,6 +25,21 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(CartaoJaExisteException.class)
 	public ResponseEntity<Object> cartaoJaExisteException(CartaoJaExisteException ex, WebRequest request) {
 		return super.handleExceptionInternal(ex, ex.getCartaoDto(), new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
+	}
+	
+	@ExceptionHandler(CartaoInexistenteException.class)
+	public ResponseEntity<Object> cartaoInexistenteException(CartaoInexistenteException ex, WebRequest request) {
+		return super.handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
+	}
+	
+	@ExceptionHandler(SenhaCartaoInvalidaException.class)
+	public ResponseEntity<Object> senhaCartaoInvalidaException(SenhaCartaoInvalidaException ex, WebRequest request) {
+		return super.handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
+	}
+	
+	@ExceptionHandler(SaldoCartaoInsuficienteException.class)
+	public ResponseEntity<Object> saldoCartaoInsuficienteException(SaldoCartaoInsuficienteException ex, WebRequest request) {
+		return super.handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
 	}
 	
 
