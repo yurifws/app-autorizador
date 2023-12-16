@@ -9,7 +9,6 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +18,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "tb_cartao")
 public class CartaoEntity {
@@ -34,7 +32,7 @@ public class CartaoEntity {
 	private BigDecimal saldo;
 	
 	@PrePersist
-	public void onPrePersist() {
+	protected  void onPrePersist() {
 		this.saldo = BigDecimal.valueOf(500);
 	}
 
