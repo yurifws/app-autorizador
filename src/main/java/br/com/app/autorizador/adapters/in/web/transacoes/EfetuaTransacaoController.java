@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.app.autorizador.adapters.in.web.transacoes.dto.TransacaoRequestDto;
 import br.com.app.autorizador.application.port.in.EfetuaTransacaoUseCase;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(ROTA_TRANSACOES)
+@Slf4j
 public class EfetuaTransacaoController {
 
 	private final EfetuaTransacaoUseCase efetuaTransacaoUseCase;
@@ -28,6 +30,7 @@ public class EfetuaTransacaoController {
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<String> efetuarTransacao(@RequestBody TransacaoRequestDto transacaoRequestDto) {
 
+		log.info("Efetuando transação - {}", transacaoRequestDto.toString());
 		efetuaTransacaoUseCase.efetuarTransacao(INSTANCE.toTransacao(transacaoRequestDto));
 		
 		return ResponseEntity

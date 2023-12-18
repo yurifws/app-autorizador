@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.app.autorizador.application.port.in.ObtemSaldoCartaoUseCase;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(ROTA_CARTOES)
+@Slf4j
 public class ObtemSaldoCartaoController {
 	
 	private final ObtemSaldoCartaoUseCase obtemSaldoCartaoUseCase;
@@ -28,6 +30,7 @@ public class ObtemSaldoCartaoController {
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(path=CARTOES_POR_NUMERO_CARTAO, produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<BigDecimal>  buscarPorNumero(@PathVariable(value = NUMERO_CARTAO) Long numeroCartao) {
+		log.info("Obtendo saldo do cartão de número {}", numeroCartao);
 		return ResponseEntity.ok(obtemSaldoCartaoUseCase.buscarPorNumero(numeroCartao));
 	}
 	

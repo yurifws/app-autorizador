@@ -18,7 +18,7 @@ public class ObtemSaldoCartaoPersistenceAdapter implements ObtemSaldoCartaoPort 
 	
 	@Override
 	public BigDecimal buscarPorNumero(Long numero) {
-		return service.buscarPorNumero(numero).map(CartaoEntity::getSaldo).orElseThrow(() -> new NumeroCartaoNaoEncontradoException(null));
+		return service.buscarPorNumero(numero).map(CartaoEntity::getSaldo).orElseThrow(() -> new NumeroCartaoNaoEncontradoException(String.valueOf(numero)));
 	}
 
 }
