@@ -12,9 +12,11 @@ import br.com.app.autorizador.application.domain.Cartao;
 import br.com.app.autorizador.application.domain.Transacao;
 import br.com.app.autorizador.common.exception.SaldoCartaoInsuficienteException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class CartaoSaldoInsuficienteValidator implements ICartaoValidator {
 
 	@Override
@@ -22,7 +24,10 @@ public class CartaoSaldoInsuficienteValidator implements ICartaoValidator {
 		cartaoBuscado.stream()
 		.filter(isSaldoSuficientePredicate(transacao))
 		.findAny()
-		.orElseThrow(() ->  new SaldoCartaoInsuficienteException(SALDO_INSUFICIENTE.name()));
+		.orElseThrow(() ->  {
+			log.info("Saldo insuficiente para o cartão de número {}", transacao.getCartao().getNumero());
+			return new SaldoCartaoInsuficienteException(SALDO_INSUFICIENTE.name());
+		});
 		
 	}
 
