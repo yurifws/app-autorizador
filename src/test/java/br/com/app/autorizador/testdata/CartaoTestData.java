@@ -26,6 +26,18 @@ public class CartaoTestData {
 				.build();
 	}
 	
+	public static Cartao getCartaoSenhaInvalida() {
+		return Cartao.builder()
+				.numero(1111222233335555l)
+				.senha("9090")
+				.saldo(BigDecimal.valueOf(500))
+				.build();
+	}
+	
+	public static Optional<Cartao> getOptionalCartaoSenhaInvalida() {
+		return Optional.of(getCartaoSenhaInvalida());
+	}
+	
 	
 
 }
